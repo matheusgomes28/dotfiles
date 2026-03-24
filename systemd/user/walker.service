@@ -1,0 +1,12 @@
+[Unit]
+Description=Elephant
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=<PATH-TO-HOME>/.cargo/bin/walker --gapplication-service
+Restart=on-failure
+Environment=PATH=<PATH-TO-HOME>/go/bin:<PATH-TO-HOME>/.cargo/bin:<PATH-TO-HOME>/.local/bin:/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=graphical-session.target
