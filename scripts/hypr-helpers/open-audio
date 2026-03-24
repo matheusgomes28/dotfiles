@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# TODO: Maybe use xdg-open-like tool to start preferred audio app
+open-or-focus-tui wiremix

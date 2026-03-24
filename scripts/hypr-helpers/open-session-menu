@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+menu_contents=$'⭘  Shutdown\n󰤁  Restart\n  Lock Screen\n  Log Off'
+
+selection=$(echo "$menu_contents" | walker --dmenu --theme "kanagawa-dmenu")
+
+# ${selection,,} = lower case
+
+echo "Selection is: ${selection}"
+
+case "${selection,,}" in
+*"shutdown"*)
+  notify-send "Power Option" "Shutting Down"
+  sleep 2
+  hypr-shutdown
+  ;;
+*"restart"*)
+  notify-send "Power Option" "Restarting"
+  sleep 2
+  hypr-reboot
+  ;;
+*"lock screen"*)
+  hyprlock
+  ;;
+*"log off"*)
+  hyprctl dispatch exit
+  ;;
+*)
+  echo "Unknown option: ${selection}"
+  ;;
+esac

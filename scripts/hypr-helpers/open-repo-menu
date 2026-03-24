@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+menu_contents=$'󰹑  Grand Central\n  RokuOs\n󰥯  Firmware'
+
+selection=$(echo "$menu_contents" | walker --dmenu --theme "kanagawa-dmenu")
+
+# ${selection,,} = lower case
+
+echo "Selection is: ${selection}"
+
+case "${selection,,}" in
+*"grand central"*)
+  exec setsid uwsm-app -- alacritty --working-directory ~/development/grandcentral
+  ;;
+*"rokuos"*)
+  exec setsid uwsm-app -- alacritty --working-directory ~/development/os
+  ;;
+*"firmware"*)
+  exec setsid uwsm-app -- alacritty --working-directory ~/development/firmware
+  ;;
+*)
+  echo "Unknown option: ${selection}"
+  ;;
+esac

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# This script is here as it's not trivial to use
+# hyprshutdown on Ubuntu due to having to build
+# the entire hypr environment from source.
+
+# Close all windows gracefully (allows apps to prompt for save)
+hyprctl clients -j | jq -r '.[].address' | while read addr; do
+  hyprctl dispatch closewindow "address:$addr"
+done
+
+# Get the number of running clients, quit when
+# it reaches 0. I.e. when all apps are closed
+for i in {1..30}; do
+  count=$(hyprctl clients -j | jq 'length')
+  [ "$count" -eq 0 ] && break
+  sleep 1
+done
+
+systemd-run --user --no-block sh -c "sleep 2 && systemctl reboot --no-wall"

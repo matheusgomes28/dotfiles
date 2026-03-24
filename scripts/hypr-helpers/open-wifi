@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Here we use wifitui instead of impala because
+# Ubuntu uses wpa_supplicant and NetworkManager and
+# not iwd - having iwd will mess up enterprise networks
+
+# TODO: Maybe use xdg-open-like tool to start preferred audio app
+open-or-focus-tui wifitui

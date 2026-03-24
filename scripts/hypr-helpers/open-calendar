@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Using this calendar app instead of the waybar calendar
+# widget because is just looks so much better.
+# credits to: https://github.com/anufrievroman/calcure
+#
+# TODO: I should probably write my own lightweight calendar
+# TODO: implementation in Rust with TUI.
+
+open-or-focus-tui calcure
